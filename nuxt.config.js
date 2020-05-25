@@ -1,3 +1,5 @@
+// let's pick <base href="/ionic-nuxt-app/" /> when GitHub pages:
+const baseHref = process.env.BASE_HREF || '/';
 
 export default {
   mode: 'spa',
@@ -23,11 +25,19 @@ export default {
   ** Global CSS
   */
   css: [
+    // add required css:
+    '../node_modules/@ionic/core/css/core.css',
+    '../node_modules/@ionic/core/css/normalize.css',
+    '../node_modules/@ionic/core/css/structure.css',
+    '../node_modules/@ionic/core/css/typography.css',
+    '../node_modules/@ionic/core/css/ionic.bundle.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // add created plugin:
+    { src: '~/plugins/ionic.js', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -57,5 +67,16 @@ export default {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  generate: {
+    routes: [
+      '/',
+    ],
+  },
+  router: {
+    // router with correct public path
+    base: baseHref,
+    mode: 'history',
+  },
+  // skipped others...
 }

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <ion-app>
     <nuxt />
-  </div>
+  </ion-app>
 </template>
 
 <style>
